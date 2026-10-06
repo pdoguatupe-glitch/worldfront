@@ -1,0 +1,35 @@
+{
+  "name": "@worldfront/backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server/index.js",
+    "test": "node --import tsx --test test/gameService.test.ts",
+    "test:realtime": "node test/realtime.integration.mjs"
+  },
+  "dependencies": {
+    "@worldfront/shared": "0.1.0",
+    "cors": "^2.8.5",
+    "country-json": "^2.3.0",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "i18n-iso-countries": "^7.14.0",
+    "pg": "^8.23.1",
+    "socket.io": "^4.8.1",
+    "topojson-client": "^3.1.0",
+    "world-atlas": "^2.0.2",
+    "world-countries": "^5.1.0",
+    "zod": "^4.1.5"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.3.0",
+    "@types/pg": "^8.23.1",
+    "tsx": "^4.20.5"
+  }
+}

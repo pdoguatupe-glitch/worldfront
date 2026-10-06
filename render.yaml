@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: worldfront-api
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build -w shared && npm run build -w backend
+    startCommand: npm start -w backend
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: FRONTEND_ORIGINS
+        sync: false

@@ -1,0 +1,16 @@
+{
+  "name": "worldfront",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": ["frontend", "backend", "shared"],
+  "scripts": {
+    "dev": "concurrently -k -n server,web -c blue,green \"npm:dev:server\" \"npm:dev:web\"",
+    "dev:server": "npm run dev -w backend",
+    "dev:web": "npm run dev -w frontend",
+    "build": "npm run build -w shared && npm run build -w backend && npm run build -w frontend",
+    "start": "npm run start -w backend",
+    "test": "npm run test -w backend"
+  },
+  "devDependencies": { "concurrently": "^9.2.1", "typescript": "^5.9.2" },
+  "overrides": { "shell-quote": "^1.11.0" }
+}
