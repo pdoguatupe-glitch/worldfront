@@ -28,15 +28,22 @@ npm run dev
 
 Abra <http://localhost:5173>. A API local fica em <http://localhost:3001>. Sem `DATABASE_URL`, o estado de desenvolvimento é salvo em `backend/data/worldfront.json` (ignorado pelo Git). Single Player também depende da API.
 
-## Publicação gratuita
+## Produção
 
-Arquitetura prevista: frontend estático no GitHub Pages, API Socket.IO em Render e PostgreSQL no Supabase. O banco conserva perfis e partidas quando o serviço web gratuito hiberna ou reinicia. Os provedores impõem limites e podem pausar serviços gratuitos; consulte os links oficiais antes de publicar para confirmar as condições vigentes.
+O site está publicado e acessível nestes endereços:
 
-### 1. Criar o banco Supabase
+- **Site:** <https://pdoguatupe-glitch.github.io/worldfront/>
+- **API e Socket.IO:** <https://worldfront-api.onrender.com>
+- **Health check:** <https://worldfront-api.onrender.com/api/health>
+- **Repositório público:** <https://github.com/pdoguatupe-glitch/worldfront>
+
+O frontend é servido pelo GitHub Pages; a API está conectada ao Render e persiste perfis e partidas no PostgreSQL do Supabase. Os pushes para `main` iniciam os deploys automáticos do Pages e do serviço Render. Os planos gratuitos podem hibernar ou pausar serviços; consulte os limites dos provedores antes de depender de disponibilidade contínua.
+
+### Banco Supabase
 
 Crie um projeto no plano Free e copie a URI de conexão PostgreSQL (use uma conexão apropriada para aplicações persistentes; guarde usuário e senha como segredo). A primeira inicialização da API executa `backend/migrations/001_initial.sql`. A tabela contém estado do jogo em JSONB; os tokens de sessão são armazenados como hashes.
 
-### 2. Criar a API Render
+### API Render
 
 Importe este repositório no Render. O arquivo `render.yaml` define build, inicialização e health check. Configure no serviço:
 
@@ -45,7 +52,7 @@ Importe este repositório no Render. O arquivo `render.yaml` define build, inici
 
 O serviço também define `NODE_ENV=production`; nessa condição a API recusa iniciar sem `DATABASE_URL`. Após o deploy, confirme `https://SEU-SERVICO.onrender.com/health` e `/api/health`.
 
-### 3. Publicar no GitHub Pages
+### GitHub Pages
 
 No repositório GitHub, abra **Settings → Pages** e escolha **GitHub Actions** como fonte. Em **Settings → Secrets and variables → Actions → Variables**, adicione:
 
