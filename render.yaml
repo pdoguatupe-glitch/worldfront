@@ -3,7 +3,7 @@ services:
     name: worldfront-api
     runtime: node
     plan: free
-    buildCommand: npm ci && npm run build -w shared && npm run build -w backend
+    buildCommand: npm ci --include=dev && npm run build -w shared && npm run build -w backend
     startCommand: npm start -w backend
     healthCheckPath: /health
     envVars:
